@@ -1,0 +1,27 @@
+
+// rtbfms.idl
+module RTBFMS {
+        struct Fighter {
+                string id;
+                string model;
+                short field;
+                boolean friend;
+                boolean alive;
+        };
+        struct Command {
+                string id;
+                string time;
+                string content;
+        };
+        interface Grid {
+                typedef sequence<Fighter> FighterList;
+                typedef sequence<Command> CommandList;
+                attribute FighterList fighters;
+                attribute CommandList commands;
+                boolean pushFighter(in string FighterID, in Fighter FighterData);
+                void pullFighter(in string FighterID, inout Fighter FighterData);
+                boolean pushCommand(in string FighterID, in Command CommandData);
+                void pullCommand(in string FighterID, inout Command CommandData);
+                void quitCommand();
+        };
+};
